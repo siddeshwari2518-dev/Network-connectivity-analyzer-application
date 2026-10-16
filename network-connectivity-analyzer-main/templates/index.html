@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetVision | Network Analyzer</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div>
+            <h1>🌐 NetVision</h1>
+            <p>Network Connectivity & Analyzer Simulator</p>
+        </div>
+        <span class="status">● Simulator Online</span>
+    </header>
+
+    <main class="container">
+        <section class="welcome">
+            <div>
+                <p class="eyebrow">DSA PROJECT · NETWORK INTELLIGENCE</p>
+                <h2>Understand your network.</h2>
+                <p>Build connections, explore paths and analyze connectivity.</p>
+            </div>
+            <button class="secondary" onclick="loadNetwork()">↻ Refresh</button>
+        </section>
+
+        <section class="stats">
+            <article class="stat-card">
+                <span>Connected Devices</span>
+                <strong id="deviceCount">0</strong>
+            </article>
+            <article class="stat-card">
+                <span>Network Links</span>
+                <strong id="linkCount">0</strong>
+            </article>
+            <article class="stat-card">
+                <span>Network Groups</span>
+                <strong id="groupCount">0</strong>
+            </article>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Network Topology</h2>
+                    <p>Lines represent connections between devices.</p>
+                </div>
+                <span class="tag">LIVE VIEW</span>
+            </div>
+            <div id="networkCanvas" class="network-canvas">
+                Loading network...
+            </div>
+            <p class="hint">Edge numbers represent connection costs.</p>
+        </section>
+
+        <section class="two-columns">
+            <div class="panel">
+                <h2>＋ Add Device</h2>
+                <p>Create a computer in your network.</p>
+                <form id="deviceForm">
+                    <label for="deviceId">Device ID</label>
+                    <input id="deviceId" placeholder="e.g. PC5" required>
+                    <label for="deviceName">Device Name</label>
+                    <input id="deviceName" placeholder="e.g. Lab Computer" required>
+                    <button type="submit">Add Device</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h2>↔ Create Connection</h2>
+                <p>Connect two devices with a weighted link.</p>
+                <form id="connectionForm">
+                    <label for="source">Source Device</label>
+                    <select id="source" required></select>
+                    <label for="target">Target Device</label>
+                    <select id="target" required></select>
+                    <label for="weight">Connection Cost</label>
+                    <input id="weight" type="number" min="0" step="any"
+                           value="1" required>
+                    <button type="submit">Create Connection</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>⚡ Algorithm Lab</h2>
+            <p>Run actual graph algorithms on your network.</p>
+            <div class="algorithm-controls">
+                <div>
+                    <label for="algorithm">Algorithm</label>
+                    <select id="algorithm">
+                        <option value="BFS">BFS — Breadth First Search</option>
+                        <option value="DFS">DFS — Depth First Search</option>
+                        <option value="MST">Kruskal — Minimum Spanning Tree</option>
+                        <option value="CONNECTIVITY">Connectivity Analysis</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="start">Starting Device (for BFS/DFS)</label>
+                    <select id="start"></select>
+                </div>
+                <button id="runAlgorithm">Run Algorithm →</button>
+            </div>
+            <div id="algorithmResult" class="result">
+                Choose an algorithm and click Run Algorithm.
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Device Directory</h2>
+            <p>View and manage registered devices.</p>
+            <div id="deviceList"></div>
+        </section>
+
+        <div id="message" class="message" role="status"></div>
+    </main>
+
+    <footer>NetVision · Data Structures & Algorithms Project</footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
