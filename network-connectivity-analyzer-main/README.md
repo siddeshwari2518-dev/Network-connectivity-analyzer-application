@@ -2,7 +2,7 @@
 
 Live Demo: https://network-connectivity-analyzer.onrender.com
 
-GitHub Repository: https://github.com/Preesha600274/network-connectivity-analyzer.git
+
 
 
 
